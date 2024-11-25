@@ -1,0 +1,57 @@
+{% extends 'galeria/base.html' %} {% load static %} {% block content %}
+<div class="pagina-inicial">
+  <header class="cabecalho">
+    <img
+      src="{% static '/assets/logo/Logo(2).png' %}"
+      alt="Logo da Alura Space"
+    />
+    <div class="cabecalho__busca">
+      <div class="busca__fundo">
+        <div class="busca__fundo">
+          <form action="{% url 'buscar' %}">
+            <input
+              class="busca__input"
+              type="text"
+              name="buscar"
+              placeholder="O que você procura?"
+            />
+            <button type="submit">
+              <img
+                class="busca__icone"
+                src="{% static '/assets/ícones/1x/search.png' %}"
+                alt="ícone de search"
+              />
+            </button>
+          </form>
+      </div>
+    </div>
+  </header>
+  <main class="principal">
+    <section class="menu-lateral">
+      {% include 'partials/_nav.html'%}
+    </section>
+    <section class="conteudo">
+      <section class="imagem">
+        <div class="imagem__conteudo">
+          {% if fotografia.foto == "" or fotografia.foto == null %}
+          <img
+            class="imagem__imagem"
+            src="{% static '/assets/imagens/galeria/not-found.jpg'%}"
+          />
+          {% else %}
+          <img class="imagem__imagem" src="{{fotografia.foto.url}}" />
+          {% endif %}
+          <!-- passando referencia do objeto foto-->
+          <div class="imagem__info">
+            <div class="imagem__texto">
+              <p class="imagem__titulo">{{fotografia.nome}}</p>
+              <p class="imagem__descricao">{{fotografia.legenda}}</p>
+              <p class="imagem__texto">{{fotografia.descricao}}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+{% include 'partials/_footer.html'%} {% endblock %}

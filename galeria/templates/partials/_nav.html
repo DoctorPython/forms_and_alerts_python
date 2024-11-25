@@ -1,0 +1,19 @@
+{% load static %}
+
+<nav class="menu-lateral__navegacao">
+  <a href="{% url 'index' %}"
+    ><img src="{% static '/assets/ícones/1x/inicio.png' %}" /> Home</a
+  >
+  <a href="{% url 'login' %}"
+    ><img src="{% static '/assets/ícones/1x/login.png' %}" /> Login</a
+  >
+  <a href="{% url 'cadastro' %}"
+    ><img src="{% static '/assets/ícones/1x/usuario.png' %}" /> Cadastro</a
+  >
+  <a href="{% url 'logout' %}"
+    ><img src="{% static '/assets/ícones/1x/logout.png' %}" />Loggout
+  </a>
+  <a href="http://localhost:8000/accounts/logout/"
+    ><img src="{% static '/assets/imagens/github.svg' %}" />Loggout
+  </a>
+</nav>

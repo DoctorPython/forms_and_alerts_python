@@ -1,0 +1,81 @@
+{% extends 'usuarios/base.html' %} {% load static %} {% block content %}
+
+<div class="pagina-inicial">
+  <header class="cabecalho">
+    <img
+      src="{% static '/assets/logo/Logo(2).png' %}"
+      alt="Logo da Alura Space"
+    />
+    {% include 'partials_user/_alertas.html' %}
+    <div class="cabecalho__busca">
+      <div class="busca__fundo">
+        <form action="{% url 'buscar' %}">
+          <input
+            class="busca__input"
+            type="text"
+            name="buscar"
+            placeholder="O que você procura?"
+          />
+          <button type="submit">
+            <img
+              class="busca__icone"
+              src="{% static '/assets/ícones/1x/search.png' %}"
+              alt="ícone de search"
+            />
+          </button>
+        </form>
+      </div>
+    </div>
+  </header>
+  <main class="principal">
+    <section class="menu-lateral">
+      {% include 'partials_user/_nav.html'%}
+    </section>
+    <section class="galeria" style="margin-left: 5em">
+      <form action="{% url 'cadastro' %}" method="POST">
+        {% csrf_token %}
+        <!-- Essa DIV adiciona os campos comforme são criados no forms.py-->
+        <div class="row" class="col-12 col-lg-12" style="margin-bottom: 10px">
+          {% for field in form.visible_fields %}
+          <div class="col-12 col-lg-12" style="margin-bottom: 10px">
+            <label
+              style="color: #d9d9d9; margin-bottom: 5px"
+              for="{{ field.id_for_label }}"
+              >{{field.label}}</label
+            >
+            {{ field }}
+          </div>
+          {% for error in field.errors %}
+          <div class="alert alert-warning">{{error}}</div>
+          <!--- Valida se o campo do usuário possui espaço-->
+          {% endfor %} {% endfor %}
+        </div>
+        <div>
+          <button
+            class="btn btn-success col-12"
+            style="padding: top 5px"
+            type="submit"
+          >
+            Logar
+          </button>
+        </div>
+      </form>
+      <!--Fim do form cadastro-->
+    </section>
+  </main>
+
+  <div class="social-media">
+    <div class="social-media-details">
+      <a href="http://localhost:8000/accounts/github/login/?process=login">
+        <img
+          src="{% static 'assets/imagens/github.svg' %}"
+          alt="Ícone para realizar a autenticação com GitHub"
+          class="social-media-icon"
+        />
+        <p class="social-media-details">GitHub</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% include 'partials_user/_footer.html' %} {% endblock %}
