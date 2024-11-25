@@ -23,8 +23,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('galeria.urls')),  # Incluindo URLs do app "galeria"
-    path('', include('usuarios.urls')),  # Incluindo URLs do app "galeria"
+    path('', include('apps.galeria.urls')),  # Incluindo URLs do app "galeria"
+    path('', include('apps.usuarios.urls')),  # Incluindo URLs do app "galeria"
     path('accounts/', include('allauth.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #utiliza as referencias criada no arquivo settings.py
